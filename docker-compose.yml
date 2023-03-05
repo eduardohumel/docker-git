@@ -6,7 +6,7 @@ services:
     volumes:
       - db-vol:/var/lib/mysql
     env_file:
-      - .env_var_ctr-db.env
+      - env_var_ctr-db.txt
     networks:
       - wp-net
     restart: always
@@ -16,7 +16,7 @@ services:
     ports:
       - "3000:80"
     env_file:
-      - .env_var_ctr-wp.env
+      - env_var_ctr-wp.txt
     networks:
       - wp-net
     restart: always
