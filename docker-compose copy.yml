@@ -1,25 +1,25 @@
 version: '3'
 
 services:
-  ctr-db:
+  crt-db:
     image: mysql:5.7
     volumes:
       - db-vol:/var/lib/mysql
     environment:
+      MYSQL_USER: devoscloudbootcamp
       MYSQL_ROOT_PASSWORD: wordpress
       MYSQL_DATABASE: wordpress
-      MYSQL_USER: devopscloudbootcamp
-      MYSQL_PASSWORD: devopscloudbootcamp
+      MYSQL_PASSWORD: devoscloudbootcamp
     networks:
       - wp-net
     restart: always
 
-  ctr-wp:
+  crt-wp:
     image: wordpress:latest
     ports:
       - "3000:80"
     environment:
-      WORDPRESS_DB_HOST: ctr-db:3306
+      WORDPRESS_DB_HOST: crt-db:3306
       WORDPRESS_DB_USER: devopscloudbootcamp
       WORDPRESS_DB_PASSWORD: devopscloudbootcamp
       WORDPRESS_DB_NAME: wordpress
@@ -29,8 +29,8 @@ services:
     depends_on:
       - ctr-db
 
-  py-websever:
-    build:
+  py-webserver:
+    build: 
       context: .
       dockerfile: Dockerfile
     ports:
