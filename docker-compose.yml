@@ -5,11 +5,8 @@ services:
     image: mysql:5.7
     volumes:
       - db-vol:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: wordpress
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: devopscloudbootcamp
-      MYSQL_PASSWORD: devopscloudbootcamp
+    env_file:
+      - ./env_variables.env
     networks:
       - wp-net
     restart: always
@@ -18,11 +15,8 @@ services:
     image: wordpress:latest
     ports:
       - "3000:80"
-    environment:
-      WORDPRESS_DB_HOST: ctr-db:3306
-      WORDPRESS_DB_USER: devopscloudbootcamp
-      WORDPRESS_DB_PASSWORD: devopscloudbootcamp
-      WORDPRESS_DB_NAME: wordpress
+    env_file:
+      - ./env_variables.env
     networks:
       - wp-net
     restart: always
